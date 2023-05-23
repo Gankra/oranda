@@ -229,7 +229,7 @@
     --fg: #bcbdd0;
 
     --sidebar-bg: var(--color-axo-black);
-    --sidebar-fg: var(--color-axo-orange);
+    --sidebar-fg: var(--fg);
     --sidebar-non-existant: #505274;
     --sidebar-active: var(--color-axo-pink);
     --sidebar-spacer: var(--color-axo-orange);
