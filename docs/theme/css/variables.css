@@ -246,10 +246,12 @@
     --color-slate-700: #334155;
     --color-slate-800: #1e293b;
     /* another maybe-fringe-no-good-name */
-    --color-well: rgb(17 24 39);
+    --color-wellish: rgb(17 24 39);
     /* this one is totally made up, idk */
-    --color-well-light: rgb(50, 71, 116);
+    --color-wellish-light: rgb(50, 71, 116);
 
+    --well-bg: var(--color-wellish);
+    --well-bg-highlight: var(--color-wellish-light);
     --border-color: var(--color-slate-700);
     --title-fg: var(--color-axo-pink);
     --subtitle-fg: var(--color-axo-purple);
@@ -277,25 +279,25 @@
     --inline-code-bg-color: var(--bg);
     --inline-code-padding: 0em;
 
-    --theme-popup-bg: var(--color-well);
+    --theme-popup-bg: var(--well-bg);
     --theme-popup-border: var(--border-color);
-    --theme-hover: var(--color-well-light);
+    --theme-hover: var(--well-bg-highlight);
 
     --quote-bg: var(--bg);
     --quote-border: var(--color-slate-700);
 
     --table-border-color: var(--border-color);
-    --table-header-bg: var(--color-well-light);
-    --table-alternate-bg: var(--color-well);
+    --table-header-bg: var(--well-bg-highlight);
+    --table-alternate-bg: var(--well-bg);
 
     --searchbar-border-color: var(--border-color);
-    --searchbar-bg: var(--color-well);
+    --searchbar-bg: var(--well-bg);
     --searchbar-fg: var(--fg);
     --searchbar-shadow-color: var(--border-color);
     --searchresults-header-fg: var(--title-fg);
     --searchresults-border-color: var(--border-color);
-    --searchresults-li-bg: var(--color-well);
-    --search-mark-bg: var(--color-well);
+    --searchresults-li-bg: var(--well-bg);
+    --search-mark-bg: var(--well-bg);
 }
 
 
@@ -312,13 +314,16 @@
     /* fringe builtins */
     --color-slate-50: #f8fafc;
     --color-slate-300: #cbd5e1;
+    --color-slate-500: #64748b;
     --color-slate-700: #334155;
     --color-slate-800: #1e293b;
     /* another maybe-fringe-no-good-name */
-    --color-well: rgb(17 24 39);
+    --color-wellish: rgb(17 24 39);
     /* this one is totally made up, idk */
-    --color-well-light: rgb(50, 71, 116);
+    --color-wellish-light: rgb(50, 71, 116);
 
+    --well-bg: var(--color-slate-300);
+    --well-bg-highlight: var(--color-slate-500);
     --border-color: var(--color-slate-700);
     --title-fg: var(--color-axo-pink);
     --subtitle-fg: var(--color-axo-purple);
@@ -346,26 +351,25 @@
     --inline-code-bg-color: var(--bg);
     --inline-code-padding: 0em;
 
-    --theme-popup-bg: var(--color-well);
+    --theme-popup-bg: var(--well-bg);
     --theme-popup-border: var(--border-color);
-    --theme-hover: var(--color-well-light);
+    --theme-hover: var(--well-bg-highlight);
 
     --quote-bg: var(--bg);
     --quote-border: var(--color-slate-700);
 
     --table-border-color: var(--border-color);
-    --table-header-bg: var(--color-well-light);
-    --table-alternate-bg: var(--color-well);
+    --table-header-bg: var(--well-bg-highlight);
+    --table-alternate-bg: var(--well-bg);
 
     --searchbar-border-color: var(--border-color);
-    --searchbar-bg: var(--color-well);
+    --searchbar-bg: var(--well-bg);
     --searchbar-fg: var(--fg);
     --searchbar-shadow-color: var(--border-color);
     --searchresults-header-fg: var(--title-fg);
     --searchresults-border-color: var(--border-color);
-    --searchresults-li-bg: var(--color-well);
-    --search-mark-bg: var(--color-well);
-}
+    --searchresults-li-bg: var(--well-bg);
+    --search-mark-bg: var(--well-bg);
 
 @media (prefers-color-scheme: dark) {
     .light.no-js {
