@@ -102,7 +102,7 @@ fn init_theme_files(theme_dir: &Utf8Path) -> Result<()> {
 fn add_theme_to_book_toml(book_dir: &Utf8Path) -> Result<()> {
     let book_toml_path = book_dir.join(MDBOOK_TOML);
     let book_toml_src = SourceFile::load_local(&*book_toml_path)?;
-    let mut book_toml = deserialize_toml_edit(&book_toml_src)?;
+    let mut book_toml = book_toml_src.deserialize_toml_edit()?;
     let orig_contents = book_toml.to_string();
 
     let html_table = &mut book_toml["output"]["html"];
@@ -114,19 +114,4 @@ fn add_theme_to_book_toml(book_dir: &Utf8Path) -> Result<()> {
         LocalAsset::write_new(&new_contents, book_toml_path)?;
     }
     Ok(())
-}
-
-fn deserialize_toml_edit(src: &SourceFile) -> Result<toml_edit::Document> {
-    let toml = src
-        .contents()
-        .parse::<toml_edit::Document>()
-        .map_err(|details| {
-            let span = details.span().map(|span| span.into());
-            OrandaError::TomlEdit {
-                source: src.clone(),
-                span,
-                details,
-            }
-        })?;
-    Ok(toml)
 }
