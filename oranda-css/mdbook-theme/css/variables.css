@@ -6,8 +6,25 @@
     --page-padding: 15px;
     --content-max-width: 750px;
     --menu-bar-height: 50px;
+    
     --mono-font: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
     --code-font-size: 0.875em /* please adjust the ace font size accordingly in editor.js */
+
+    /* axomdbook mods */
+    --title-fg: var(--fg);
+    --subtitle-fg: var(--title-fg);
+    --main-font: "Open Sans", sans-serif;
+    /* FIXME(axomdbook): this doesn't actually work the way I want. :(
+    
+       In vanilla mdbook these styles are ultimately set by highlight.css,
+       which can be wildly customized, so we don't want to hand-edit that file.
+       We want the axo theme to be able to remove the bg-color and padding
+       around these themes, while ideally preserving the values set by
+       highlight.css in all the other themes. We get the axo theme
+       working fine, but setting inherit/default doesn't just let highlight.css win.
+    */
+    --inline-code-bg-color: inherit;
+    --inline-code-bg-padding: inherit;
 }
 
 /* Themes */
@@ -220,48 +237,65 @@
     --color-axo-orange-dark: hsla(356, 75%, 64%, 1);
     --color-axo-highlighter: hsla(51, 100%, 50%, 1);
     --color-axo-black: hsla(0, 0%, 5%, 1);
+    /* i think this is defined by fringe, but it didn't have a name so i made this one */
+    --color-axo-purple: rgb(167 139 250);
 
+    /* fringe builtins */
+    --color-slate-50: #f8fafc;
+    --color-slate-300: #cbd5e1;
+    --color-slate-700: #334155;
+    --color-slate-800: #1e293b;
+    /* another maybe-fringe-no-good-name */
+    --color-well: rgb(17 24 39);
+    /* this one is totally made up, idk */
+    --color-well-light: rgb(50, 71, 116);
+
+    --border-color: var(--color-slate-700);
     --title-fg: var(--color-axo-pink);
-    --main-font: Comfortaa;
+    --subtitle-fg: var(--color-axo-purple);
+    --main-font: Comfortaa,Comfortaa override,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    --mono-font: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
 
-    /* modified version of the navy theme above */
     --bg: var(--color-axo-black);
-    --fg: #bcbdd0;
+    --fg: var(--color-slate-300);
 
-    --sidebar-bg: var(--color-axo-black);
+    --sidebar-bg: var(--bg);
     --sidebar-fg: var(--fg);
-    --sidebar-non-existant: #505274;
+    --sidebar-non-existant: var(--bg);
     --sidebar-active: var(--color-axo-pink);
     --sidebar-spacer: var(--color-axo-orange);
 
-    --scrollbar: var(--sidebar-fg);
+    --scrollbar: default;
 
     --icons: var(--color-axo-orange);
     --icons-hover: var(--color-axo-pink);
 
     --links: var(--color-axo-orange);
+    --links-hover: var(--color-axo-pink);
 
-    --inline-code-color: #c5c8c6;
+    --inline-code-color: var(--color-axo-purple);
+    --inline-code-bg-color: var(--bg);
+    --inline-code-padding: 0em;
 
-    --theme-popup-bg: #161923;
-    --theme-popup-border: #737480;
-    --theme-hover: #282e40;
+    --theme-popup-bg: var(--color-well);
+    --theme-popup-border: var(--border-color);
+    --theme-hover: var(--color-well-light);
 
-    --quote-bg: hsl(226, 15%, 17%);
-    --quote-border: hsl(226, 15%, 22%);
+    --quote-bg: var(--bg);
+    --quote-border: var(--color-slate-700);
 
-    --table-border-color: var(--color-axo-orange);
-    --table-header-bg: hsl(226, 23%, 31%);
-    --table-alternate-bg: hsl(226, 23%, 14%);
+    --table-border-color: var(--border-color);
+    --table-header-bg: var(--color-well-light);
+    --table-alternate-bg: var(--color-well);
 
-    --searchbar-border-color: #aaa;
-    --searchbar-bg: #aeaec6;
-    --searchbar-fg: #000;
-    --searchbar-shadow-color: #aaa;
-    --searchresults-header-fg: #5f5f71;
-    --searchresults-border-color: #5c5c68;
-    --searchresults-li-bg: #242430;
-    --search-mark-bg: #a2cff5;
+    --searchbar-border-color: var(--border-color);
+    --searchbar-bg: var(--color-well);
+    --searchbar-fg: var(--fg);
+    --searchbar-shadow-color: var(--border-color);
+    --searchresults-header-fg: var(--title-fg);
+    --searchresults-border-color: var(--border-color);
+    --searchresults-li-bg: var(--color-well);
+    --search-mark-bg: var(--color-well);
 }
 
 
@@ -272,48 +306,65 @@
     --color-axo-orange-dark: hsla(356, 75%, 64%, 1);
     --color-axo-highlighter: hsla(51, 100%, 50%, 1);
     --color-axo-black: hsla(0, 0%, 5%, 1);
+    /* i think this is defined by fringe, but it didn't have a name so i made this one */
+    --color-axo-purple: rgb(167 139 250);
 
+    /* fringe builtins */
+    --color-slate-50: #f8fafc;
+    --color-slate-300: #cbd5e1;
+    --color-slate-700: #334155;
+    --color-slate-800: #1e293b;
+    /* another maybe-fringe-no-good-name */
+    --color-well: rgb(17 24 39);
+    /* this one is totally made up, idk */
+    --color-well-light: rgb(50, 71, 116);
+
+    --border-color: var(--color-slate-700);
     --title-fg: var(--color-axo-pink);
-    --main-font: Comfortaa;
+    --subtitle-fg: var(--color-axo-purple);
+    --main-font: Comfortaa,Comfortaa override,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    --mono-font: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
 
-    /* modified version of the light theme above */
-    --bg: hsl(0, 0%, 100%);
-    --fg: hsl(0, 0%, 0%);
+    --bg: var(--color-slate-50);
+    --fg: var(--color-slate-800);
 
-    --sidebar-bg: #fafafa;
-    --sidebar-fg: var(--color-axo-orange);
-    --sidebar-non-existant: #aaaaaa;
+    --sidebar-bg: var(--bg);
+    --sidebar-fg: var(--fg);
+    --sidebar-non-existant: var(--bg);
     --sidebar-active: var(--color-axo-pink);
     --sidebar-spacer: var(--color-axo-orange);
 
-    --scrollbar: var(--sidebar-fg);
+    --scrollbar: default;
 
     --icons: var(--color-axo-orange);
     --icons-hover: var(--color-axo-pink);
 
     --links: var(--color-axo-orange);
+    --links-hover: var(--color-axo-pink);
 
-    --inline-code-color: #301900;
+    --inline-code-color: var(--color-axo-purple);
+    --inline-code-bg-color: var(--bg);
+    --inline-code-padding: 0em;
 
-    --theme-popup-bg: #fafafa;
-    --theme-popup-border: #cccccc;
-    --theme-hover: #e6e6e6;
+    --theme-popup-bg: var(--color-well);
+    --theme-popup-border: var(--border-color);
+    --theme-hover: var(--color-well-light);
 
-    --quote-bg: hsl(197, 37%, 96%);
-    --quote-border: hsl(197, 37%, 91%);
+    --quote-bg: var(--bg);
+    --quote-border: var(--color-slate-700);
 
-    --table-border-color: var(--color-axo-orange);
-    --table-header-bg: hsl(0, 0%, 80%);
-    --table-alternate-bg: hsl(0, 0%, 97%);
+    --table-border-color: var(--border-color);
+    --table-header-bg: var(--color-well-light);
+    --table-alternate-bg: var(--color-well);
 
-    --searchbar-border-color: #aaa;
-    --searchbar-bg: #fafafa;
-    --searchbar-fg: #000;
-    --searchbar-shadow-color: #aaa;
-    --searchresults-header-fg: #666;
-    --searchresults-border-color: #888;
-    --searchresults-li-bg: #e4f2fe;
-    --search-mark-bg: #a2cff5;
+    --searchbar-border-color: var(--border-color);
+    --searchbar-bg: var(--color-well);
+    --searchbar-fg: var(--fg);
+    --searchbar-shadow-color: var(--border-color);
+    --searchresults-header-fg: var(--title-fg);
+    --searchresults-border-color: var(--border-color);
+    --searchresults-li-bg: var(--color-well);
+    --search-mark-bg: var(--color-well);
 }
 
 @media (prefers-color-scheme: dark) {

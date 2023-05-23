@@ -5,6 +5,16 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
+/* FIXME(axomdbook): this doesn't actually work the way I want. :(
+
+  I want standard mdbook themes to look the same when you turn off the axo theme,
+  but as-is we don't vendor the fonts with the way we override the theme. I think
+  we want copy-fonts=true turned on or something, but this is messy and I need to look
+  into it more (seems to be rapidly changing and the source of the last few mdbook releases):
+
+  https://github.com/rust-lang/mdBook/pull/2080
+*/
+
 /* open-sans-300 - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
   font-family: 'Open Sans';
