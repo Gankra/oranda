@@ -29,10 +29,17 @@ const THEME_INDEX_HBS_PATH: &str = "index.hbs";
 const THEME_INDEX_HBS: &str = include_str!("../../oranda-css/mdbook-theme/index.hbs");
 
 const THEME_HIGHLIGHT_CSS_PATH: &str = "highlight.css";
-const THEMES: &[(&str, &str)] = &[("MaterialTheme", include_str!("../../oranda-css/mdbook-theme/highlight-js-themes/base16-material.css"))];
+const THEMES: &[(&str, &str)] = &[(
+    "MaterialTheme",
+    include_str!("../../oranda-css/mdbook-theme/highlight-js-themes/base16-material.css"),
+)];
 
 /// Build and write mdbook to the dist dir
-pub fn build_mdbook(dist: &Utf8Path, book_cfg: &MdBookConfig, syntax_theme: &SyntaxTheme) -> Result<()> {
+pub fn build_mdbook(
+    dist: &Utf8Path,
+    book_cfg: &MdBookConfig,
+    syntax_theme: &SyntaxTheme,
+) -> Result<()> {
     Message::new(MessageType::Info, "Building mdbook...").print();
     tracing::info!("Building mdbook...");
 
@@ -90,13 +97,16 @@ fn init_theme_files(theme_dir: &Utf8Path, syntax_theme: &SyntaxTheme) -> Result<
     }
 
     let theme_name = syntax_theme.as_str();
-    let highlight_theme = THEMES.iter().find_map(|(name, contents)| {
-        if *name == theme_name {
-            Some(*contents)
-        } else {
-            None
-        }
-    }).expect("failed to find highlightjs syntax theme for mdbook!?");
+    let highlight_theme = THEMES
+        .iter()
+        .find_map(|(name, contents)| {
+            if *name == theme_name {
+                Some(*contents)
+            } else {
+                None
+            }
+        })
+        .expect("failed to find highlightjs syntax theme for mdbook!?");
 
     let files = vec![
         (THEME_GENERAL_CSS_PATH, THEME_GENERAL_CSS),
@@ -113,7 +123,6 @@ fn init_theme_files(theme_dir: &Utf8Path, syntax_theme: &SyntaxTheme) -> Result<
         LocalAsset::create_dir_all(theme_dir.as_str())?;
         LocalAsset::write_new_all(contents, path)?;
     }
-    
 
     Ok(())
 }
