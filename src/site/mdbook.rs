@@ -103,13 +103,16 @@ fn add_theme_to_book_toml(book_dir: &Utf8Path) -> Result<()> {
     let book_toml_path = book_dir.join(MDBOOK_TOML);
     let book_toml_src = SourceFile::load_local(&*book_toml_path)?;
     let mut book_toml = deserialize_toml_edit(&book_toml_src)?;
+    let orig_contents = book_toml.to_string();
 
     let html_table = &mut book_toml["output"]["html"];
     html_table["default-theme"] = value("axo");
     html_table["preferred-dark-theme"] = value("axo");
 
-    let new_toml_contents = book_toml.to_string();
-    LocalAsset::write_new(&new_toml_contents, book_toml_path)?;
+    let new_contents = book_toml.to_string();
+    if orig_contents != new_contents {
+        LocalAsset::write_new(&new_contents, book_toml_path)?;
+    }
     Ok(())
 }
 
