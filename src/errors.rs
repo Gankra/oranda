@@ -92,13 +92,15 @@ pub enum OrandaError {
     #[error("Couldn't load your mdbook at {path}")]
     MdBookLoad {
         path: String,
-        inner: mdbook::errors::Error,
+        #[source]
+        details: mdbook::errors::Error,
     },
 
     #[error("Couldn't build your mdbook at {path}")]
     MdBookBuild {
         path: String,
-        inner: mdbook::errors::Error,
+        #[source]
+        details: mdbook::errors::Error,
     },
     #[error("We found a potential {kind} project at {manifest_path} but there was an issue")]
     #[diagnostic(severity = "warn")]

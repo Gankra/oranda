@@ -292,6 +292,7 @@ function playground_text(playground, hidden = true) {
     var stylesheets = {
         ayuHighlight: document.querySelector("[href$='ayu-highlight.css']"),
         tomorrowNight: document.querySelector("[href$='tomorrow-night.css']"),
+        axoHighlight: document.querySelector("[href$='axo-highlight.css']"),
         highlight: document.querySelector("[href$='highlight.css']"),
     };
 
@@ -327,20 +328,21 @@ function playground_text(playground, hidden = true) {
     function set_theme(theme, store = true) {
         let ace_theme;
 
-        if (theme == 'coal' || theme == 'navy') {
-            stylesheets.ayuHighlight.disabled = true;
-            stylesheets.tomorrowNight.disabled = false;
-            stylesheets.highlight.disabled = true;
+        // disable all syntax stylesheets, then enable the right one
+        for (const name in stylesheets) {
+            stylesheets[name].disabled = true;
+        }
 
+        if (theme == 'coal' || theme == 'navy') {
+            stylesheets.tomorrowNight.disabled = false;
             ace_theme = "ace/theme/tomorrow_night";
         } else if (theme == 'ayu') {
             stylesheets.ayuHighlight.disabled = false;
-            stylesheets.tomorrowNight.disabled = true;
-            stylesheets.highlight.disabled = true;
+            ace_theme = "ace/theme/tomorrow_night";
+        } else if (theme == "axo" || theme == "axo-light") {
+            stylesheets.axoHighlight.disabled = false;
             ace_theme = "ace/theme/tomorrow_night";
         } else {
-            stylesheets.ayuHighlight.disabled = true;
-            stylesheets.tomorrowNight.disabled = true;
             stylesheets.highlight.disabled = false;
             ace_theme = "ace/theme/dawn";
         }
@@ -358,9 +360,16 @@ function playground_text(playground, hidden = true) {
         var previousTheme = get_theme();
 
         if (store) {
+            // We use a custom key here to avoid breaking other mdbooks running on localhost,
+            // because they will share localStorage with us, and if they see the selected
+            // theme is "axo" they sadly will crash instead of ignoring it.
             try { localStorage.setItem('axomdbook-theme', theme); } catch (e) { }
         }
 
+        // This one gets injected into the initial html based on the mdbook config,
+        // so we need to always clear it since it might not be set at the JS level.
+        // Not sure if this is a bug in vanilla mdbook or something I introduced.
+        html.classList.remove(default_theme);
         html.classList.remove(previousTheme);
         html.classList.add(theme);
         updateThemeSelected();

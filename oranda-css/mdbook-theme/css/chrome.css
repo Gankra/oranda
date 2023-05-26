@@ -208,9 +208,20 @@ a > .hljs:hover {
 
 :not(pre):not(a) > .hljs {
     color: var(--inline-code-color);
-    background-color: var(--inline-code-bg-color);
-    padding: var(--inline-code-padding);
     overflow-x: initial;
+}
+
+/* 
+  axo standard theming is to not include boxes/bgs around inline code.
+  this overloads values that are normally set by a highlightjs css
+  file (*-highlight.css), which we don't want for other themes. There's
+  no good way I could find to toggle this with pure vars, so it has to
+  be done manually here.
+*/
+.axo :not(pre) > .hljs,
+.axo-light :not(pre) > .hljs {
+    background-color: inherit;
+    padding: 0em;
 }
 
 a:hover > .hljs {
