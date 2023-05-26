@@ -48,7 +48,7 @@ pub fn has_custom_theme(book_cfg: &MdBookConfig) -> bool {
 /// Gets the dir where we should write custom theme files
 pub fn custom_theme_dir(_book_cfg: &MdBookConfig, dist: &Utf8Path) -> Result<Utf8PathBuf> {
     let pwd = axoasset::LocalAsset::current_dir()?;
-    Ok(pwd.join(dist))
+    Ok(pwd.join(dist).join("mdbook_theme"))
 }
 
 /// Build and write the mdbook to the dist dir
