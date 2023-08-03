@@ -18,9 +18,9 @@ use serde::{Deserialize, Serialize};
 pub enum OrandaTheme {
     Light,
     Dark,
-    #[serde(alias = "axo_light", rename(serialize = "axo"))]
+    #[serde(alias = "axo_light", alias = "axo", rename(serialize = "axo"))]
     AxoLight,
-    #[serde(alias = "axo_dark", rename(serialize = "dark axo"))]
+    #[serde(alias = "axo_dark", alias = "dark axo", rename(serialize = "dark axo"))]
     AxoDark,
     Hacker,
     Cupcake,
