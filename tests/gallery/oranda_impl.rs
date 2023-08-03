@@ -52,6 +52,7 @@ pub static CARGO_DIST: TestContextLock<Tools> = TestContextLock::new(
         bins: &["cargo-dist"],
     },
 );
+
 /// it's oranda!
 pub static ORANDA: TestContextLock<Tools> = TestContextLock::new(
     &TOOLS,
