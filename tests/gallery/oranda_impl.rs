@@ -40,7 +40,7 @@ pub static AKAIKATANA_REPACK: TestContextLock<Tools> = TestContextLock::new(
         bins: &["akextract", "akmetadata", "akrepack"],
     },
 );
-/// akaikatana-repack 0.2.0 has multiple bins!
+/// it's cargo-dist!
 pub static CARGO_DIST: TestContextLock<Tools> = TestContextLock::new(
     &TOOLS,
     &Repo {
@@ -50,6 +50,18 @@ pub static CARGO_DIST: TestContextLock<Tools> = TestContextLock::new(
         app_name: "cargo-dist",
         subdir: Some("cargo-dist"),
         bins: &["cargo-dist"],
+    },
+);
+/// it's oranda!
+pub static ORANDA: TestContextLock<Tools> = TestContextLock::new(
+    &TOOLS,
+    &Repo {
+        repo_owner: "axodotdev",
+        repo_name: "oranda",
+        commit_sha: "489db7b6a83a463ee256c9297aa97661fb844bea",
+        app_name: "oranda",
+        subdir: None,
+        bins: &["oranda"],
     },
 );
 

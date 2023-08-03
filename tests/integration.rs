@@ -38,3 +38,15 @@ fn gal_akaikatana() -> Result<()> {
         Ok(())
     })
 }
+
+#[test]
+fn gal_oranda() -> Result<()> {
+    let test_name = _function_name!();
+    ORANDA.run_test(|ctx| {
+        let mut config = ctx.load_oranda_json()?;
+        ctx.save_oranda_json(config)?;
+
+        let res = ctx.oranda_build(test_name)?;
+        Ok(())
+    })
+}
